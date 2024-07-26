@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:api_get/models/api_models.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,5 +13,7 @@ ApiGetProduct() async {
     } else {
       print("Error Occured");
     }
-  } catch (e) {}
+  } catch (e) {
+    print(e);
+  }
 }

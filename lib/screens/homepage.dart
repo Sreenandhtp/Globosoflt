@@ -1,5 +1,6 @@
 import 'package:api_get/const.dart';
 import 'package:api_get/models/api_models.dart';
+import 'package:api_get/screens/displayitems.dart';
 import 'package:api_get/service/api_get.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +13,8 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   List<Product> items = [];
+
+  List selectedItem = [];
 
   getproduct() {
     ApiGetProduct().then((value) {
@@ -36,17 +39,28 @@ class _HomepageState extends State<Homepage> {
       body: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) {
-            final apiItems = items[index];
+          final apiItems = items[index];
 
             return Padding(
               padding: const EdgeInsets.all(10.0),
               child: Stack(children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 170,
-                  decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 243, 243, 243),
-                      borderRadius: BorderRadius.circular(8)),
+                GestureDetector(
+                  onTap: () {
+                   
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              Displayitems(diplayitems:apiItems ),
+                        ));
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 170,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 243, 243, 243),
+                        borderRadius: BorderRadius.circular(8)),
+                  ),
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
